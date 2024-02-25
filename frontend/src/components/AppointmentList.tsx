@@ -2,28 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Paper, List, ListItem, ListItemText, Button, Dialog, DialogActions, DialogTitle, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Appointment } from '../types/Appointment';
 
-interface Buyer {
-  id:number;
-  name:string;
-  company_name:string
-}
-
-interface Vendor {
-  id:number;
-  name:string
-}
-
-interface Appointment {
-  id: number;
-  title: string;
-  type:string
-  location:string
-  host:Vendor
-  client:Buyer;
-  startTime: string;
-  endTime: string;
-}
 
 export const AppointmentList = () => {
 
