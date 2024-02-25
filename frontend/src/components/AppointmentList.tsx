@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { Paper, List, ListItem, ListItemText, Button, Dialog, DialogActions, DialogTitle, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Appointment } from '../types/Appointment';
-
+import { Button, Dialog, DialogActions, DialogTitle, Grid } from '@mui/material';
+import { useStore } from '../store/store';
+import { AppointmentCard } from './AppointmentCard';
 
 export const AppointmentList = () => {
 
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const { appointments, fetchAppointments, removeAppointment } = useStore();
   const [openDialog, setOpenDialog] = useState(false);
   const [appointmentToDelete, setAppointmentToDelete] = useState<number | null>(null);
 
   useEffect(() => {
     fetchAppointments();
-  }, []);
-
-  const fetchAppointments = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/appointments');
-      setAppointments(response.data);
-    } catch (error) {
-      console.error('Error fetching appointments:', error);
-    }
-  };
+  }, [fetchAppointments]);
 
   const handleDeleteClick = (appointmentId: number) => {
     setOpenDialog(true);
@@ -36,32 +25,23 @@ export const AppointmentList = () => {
 
   const handleConfirmDelete = async () => {
     if (appointmentToDelete !== null) {
-      try {
-        await axios.delete(`http://localhost:3000/appointments/${appointmentToDelete}`);
-        fetchAppointments(); // Refresh the list
-        handleCloseDialog();
-      } catch (error) {
-        console.error('Error deleting appointment:', error);
-      }
+      await removeAppointment(appointmentToDelete);
+      handleCloseDialog();
     }
   };
   
   return (
-    <Paper elevation={3} style={{ margin: '20px', padding: '20px' }}>
-      <List>
+    <>
+      <Grid container spacing={4} style={{ padding: '20px' }}>
         {appointments.map((appointment) => (
-          <ListItem key={appointment.id} divider secondaryAction={
-            <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteClick(appointment.id)}>
-              <DeleteIcon />
-            </IconButton>
-          }>
-            <ListItemText
-              primary={appointment.title}
-              secondary={`Start: ${appointment.startTime} - End: ${appointment.endTime}`}
+          <Grid item spacing={4} style={{ marginRight: '5rem' }} xs={12} sm={6} md={4} key={appointment.id}>
+            <AppointmentCard
+              appointment={appointment}
+              onDelete={handleDeleteClick}
             />
-          </ListItem>
+          </Grid>
         ))}
-      </List>
+      </Grid>
       <Dialog
         open={openDialog}
         onClose={handleCloseDialog}
@@ -77,6 +57,7 @@ export const AppointmentList = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Paper>
-  )
+    </>
+  );
+    
 }

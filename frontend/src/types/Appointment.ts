@@ -1,4 +1,4 @@
-import { Buyer } from "./buyer";
+import { Buyer } from "./Buyer";
 import { Vendor } from "./Vendor";
 
 export interface Appointment {

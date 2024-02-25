@@ -9,28 +9,27 @@ import { Navbar } from './layout/Navbar';
 function App() {
 
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [currentAppointment, setCurrentAppointment] = useState<any | null>(null); // Consider defining a more specific type than 'any'
+  const [currentAppointment, setCurrentAppointment] = useState<any | null>(null);
 
   const handleAddClick = () => {
-    setCurrentAppointment(null); // No current appointment for adding
-    setIsFormVisible(true); // Show the form
+    setCurrentAppointment(null); 
+    setIsFormVisible(true); 
   };
 
-  const handleEditClick = (appointment: any) => { // Replace 'any' with your appointment type
-    setCurrentAppointment(appointment); // Set the current appointment to edit
-    setIsFormVisible(true); // Show the form
+  const handleEditClick = (appointment: any) => {
+    setCurrentAppointment(appointment); 
+    setIsFormVisible(true); 
   };
 
   const handleFormSave = () => {
-    setIsFormVisible(false); // Hide the form after saving
-    // Optionally, refresh the appointments list here
+    setIsFormVisible(false); 
   };
   
   return (
     <div className="app">
       <Navbar />
       <Container maxWidth="sm" className="content">
-      <Button variant="contained" color="primary" onClick={handleAddClick}>
+      <Button style={{ margin: '20px' }} variant="contained" color="primary" onClick={handleAddClick}>
         Add New Appointment
       </Button>
       {isFormVisible && (
@@ -38,7 +37,7 @@ function App() {
       )}
         <AppointmentList />
       </Container>
-
+        
     </div>
   );
 }
