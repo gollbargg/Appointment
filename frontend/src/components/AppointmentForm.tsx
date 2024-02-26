@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, Container } from '@mui/material';
-
 import axios from 'axios';
+import { Appointment } from '../types/Appointment';
 
 interface AppointmentFormProps {
-  appointment?: any; // You can replace 'any' with a more specific type
-  onSave: () => void; // Callback function to refresh the list after saving
+  appointment?: Appointment;
+  onSave: () => void;
 }
 
-const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSave }) => {
+export const AppointmentForm = ({ appointment, onSave }: AppointmentFormProps) => {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('');
   const [location, setLocation] = useState('');
@@ -17,7 +17,6 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSave }
 
   useEffect(() => {
     if (appointment) {
-      // If editing an appointment, initialize form with existing data
       setTitle(appointment.title);
       setType(appointment.type);
       setLocation(appointment.location);
@@ -29,13 +28,11 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSave }
   const handleSave = async () => {
     const payload = { title, type, location, startTime, endTime };
     if (appointment) {
-      // Update existing appointment
       await axios.put(`http://localhost:3000/appointments/${appointment.id}`, payload);
     } else {
-      // Create new appointment
       await axios.post('http://localhost:3000/appointments', payload);
     }
-    onSave(); // Call the onSave callback to refresh the list
+    onSave();
   };
 
   const handleTypeChange = (event: SelectChangeEvent) => {
@@ -75,4 +72,3 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appointment, onSave }
   );
 };
 
-export default AppointmentForm;

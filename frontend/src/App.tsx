@@ -1,9 +1,8 @@
-import { Button, Container } from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import './App.css';
-import AppointmentForm from './components/AppointmentForm';
+import {AppointmentForm} from './components/AppointmentForm';
 import { AppointmentList } from './components/AppointmentList';
-import { Footer } from './layout/Footer';
 import { Navbar } from './layout/Navbar';
 
 function App() {
@@ -29,15 +28,23 @@ function App() {
     <div className="app">
       <Navbar />
       <Container maxWidth="sm" className="content">
-      <Button style={{ margin: '20px' }} variant="contained" color="primary" onClick={handleAddClick}>
-        Add New Appointment
-      </Button>
-      {isFormVisible && (
-        <AppointmentForm appointment={currentAppointment} onSave={handleFormSave} />
-      )}
+        <Grid container justifyContent="space-between" alignItems="center" style={{ margin: '20px 0' }}>
+          <Grid item>
+            <Typography variant="h6" component="h2">
+              Appointment List
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" onClick={handleAddClick} style={{ backgroundColor: '#8275fc' }}>
+              Add an Appointment
+            </Button>
+          </Grid>
+        </Grid>
+        {isFormVisible && (
+          <AppointmentForm appointment={currentAppointment} onSave={handleFormSave} />
+        )}
         <AppointmentList />
       </Container>
-        
     </div>
   );
 }

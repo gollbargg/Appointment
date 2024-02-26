@@ -30,6 +30,11 @@ export const AppointmentList = () => {
     }
   };
   
+  const handleEdit = () => {
+    console.log("editing")
+  }
+
+
   return (
     <>
       <Grid container spacing={4} style={{ padding: '20px' }}>
@@ -38,6 +43,7 @@ export const AppointmentList = () => {
             <AppointmentCard
               appointment={appointment}
               onDelete={handleDeleteClick}
+              onEdit={handleEdit}
             />
           </Grid>
         ))}

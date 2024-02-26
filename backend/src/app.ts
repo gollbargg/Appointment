@@ -16,7 +16,6 @@ app.use(vendorsRoute);
 app.use(buyersRoute);
 
 
-//define a basic route
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, world!');
 });

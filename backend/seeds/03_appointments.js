@@ -12,8 +12,8 @@ exports.seed = async function (knex) {
       title: 'Initial Consultation',
       type: 'Virtual',
       location: null, // For virtual appointments, location can be null
-      host_id: 1, // Assuming this matches a vendor from your vendors seed
-      client_id: 1, // Assuming this matches a buyer from your buyers seed
+      host_id: 1,
+      client_id: 1,
       startTime: '2024-03-01 10:00:00',
       endTime: '2024-03-01 11:00:00',
     },
@@ -27,6 +27,5 @@ exports.seed = async function (knex) {
       startTime: '2024-03-02 14:00:00',
       endTime: '2024-03-02 15:00:00',
     },
-    // Add more appointments as needed
   ]);
 };

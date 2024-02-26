@@ -4,22 +4,14 @@ import React from 'react'
 
 export const Navbar = () => {
   return (
-    <AppBar position="static">
-    <Toolbar>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-        Modaresa Agenda
-      </Typography>
-      <Button color="inherit">Login</Button>
-    </Toolbar>
-  </AppBar>
-  )
-}
+    <AppBar position="static" sx={{ backgroundColor: '#E7ECEF' }}> 
+      <Toolbar>
+        <img 
+          src="https://framerusercontent.com/images/k0mX1BT4dLNf0CVHxl5mQ4rf4.svg" 
+          alt="Modaresa Logo" 
+          style={{ height: '30px', marginRight: '10px' }}
+        />
+      </Toolbar>
+    </AppBar>
+  );
+};
