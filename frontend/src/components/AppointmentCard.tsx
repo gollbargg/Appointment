@@ -12,7 +12,7 @@ interface AppointmentCardProps {
 
 export const AppointmentCard = ({ appointment, onDelete, onEdit }: AppointmentCardProps) => {
   return (
-    <Card elevation={3} sx={{ width: '15rem', height: '18rem', display: 'flex', flexDirection: 'column', borderRadius:'8px' }}>
+    <Card elevation={3} sx={{ width: '15rem', height: '19rem', display: 'flex', flexDirection: 'column', borderRadius:'8px' }}>
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h5" component="div">
           {appointment.title}

@@ -27,5 +27,15 @@ exports.seed = async function (knex) {
       startTime: '2024-03-02 14:00:00',
       endTime: '2024-03-02 15:00:00',
     },
+    {
+      id: 3,
+      title: 'Project Meeting',
+      type: 'Physical',
+      location: 'Meeting Room 1',
+      host_id: 2,
+      client_id: 2,
+      startTime: '2024-03-02 14:00:00',
+      endTime: '2024-03-02 15:00:00',
+    },
   ]);
 };
